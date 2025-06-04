@@ -1,34 +1,130 @@
-<html lang="en">
+<!DOCTYPE html>
+<html dir="ltr" lang="zh" translate="no">
 
 <head>
+    <meta charset="utf-8">
+    <link data-chunk="main" rel="stylesheet" href="/static/css/client~main-bec01985~ba813d0b19f8e036800e.css">
+    <link data-chunk="main" rel="stylesheet" href="/static/css/client~main-1e20d7bb~2e2db5aca75858668faa.css">
+    <link data-chunk="main" rel="stylesheet" href="/static/css/client~main-a4fc0d9e~2f47b65b935b49a73542.css">
+    <link data-chunk="app-components-Pill" rel="stylesheet" href="/static/css/f888977eb90856a98834.css">
+    <link data-chunk="app-components-Pill" rel="stylesheet" href="/static/css/351ad67bb10a2556425e.css">
+    <link data-chunk="app-components-Logo" rel="stylesheet" href="/static/css/a7353ebb57ea6568de55.css">
+    <link data-chunk="app-components-NavButtons" rel="stylesheet" href="/static/css/f588b445ef0ba8e2713d.css">
+    <link data-chunk="app-components-PageHome" rel="stylesheet" href="/static/css/client~8215~b8a17e0b3d896b32428e.css">
+    <link data-chunk="app-components-SummaryTile" rel="stylesheet" href="/static/css/f867ca990f0efa7e02b3.css">
+    <link data-chunk="app-components-TileLabel" rel="stylesheet" href="/static/css/43f2417f0bf6a2242b8a.css">
+    <link data-chunk="app-components-Description" rel="stylesheet" href="/static/css/f3cbac0967a1f38eee47.css">
+    <link data-chunk="app-components-Footer" rel="stylesheet" href="/static/css/client~app-components-SearchOverlay-module-css~7c2a5ab223b282956783.css">
+    <link data-chunk="app-components-Footer" rel="stylesheet" href="/static/css/client~app-components-SearchClear-module-css~d69afde57bba5b29c389.css">
+    <link data-chunk="app-components-Footer" rel="stylesheet" href="/static/css/client~app-components-SearchIcon-module-css~f23362db2f45f47ba7b7.css">
+    <link data-chunk="app-components-Footer" rel="stylesheet" href="/static/css/client~app-components-Search-module-css~20438493ca6be7758720.css">
+    <link data-chunk="app-components-SearchOverlay" rel="stylesheet" href="/static/css/client~app-components-SearchContent-module-css~1eaffb027704ee4e7202.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/0e22faa1765c8264dbd7.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/53ffe17ac5c2895c20db.css">
+    <link data-chunk="app-components-Footer" rel="stylesheet" href="/static/css/client~app-components-footer-module-css~0fb6b38ca6fd62c4cf76.css">
+    <link rel="stylesheet" href="/static/css/f5eac861d07396c9.css">
 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Poki">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="color-scheme" content="only light">
+    <meta name="robots" content="max-image-preview:large">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui, shrink-to-fit=no viewport-fit=cover">
+    <meta name="application-name" content="Poki">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#83ffe7">
 </head>
 
 <body>
-
     <script>
         function detectDevice() {
             // 获取userAgent字符串
-            var userAgent = navigator.userAgent || navigator.vendor || window.opera
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
             // 使用正则表达式来检查userAgent字符串中是否包含某些关键字
             // 这些关键字通常与移动设备相关
             var mobile = /windows phone|iphone|ipad|ipod|android|blackberry|mini|windows ce|palm/i.test(
                 userAgent.toLowerCase()
-            )
+            );
 
+            // 根据设备类型设置body类名和加载相应的内容
             if (mobile) {
-
-                window.location.href = "/mobile/index.html";
+                document.body.className = 'mobileVersion';
+                loadContent('/mobile/index.html');
             } else {
-                window.location.href = "/pc/index.html";
+                document.body.className = 'DeskVersion';
+                loadContent('/pc/index.html');
             }
         }
 
-        // 调用函数
-        detectDevice()
+        // 加载内容函数
+        function loadContent(contentUrl) {
+            fetch(contentUrl)
+                .then(response => response.text())
+                .then(html => {
+                    // 创建一个临时容器来解析HTML
+                    const tempContainer = document.createElement('div');
+                    tempContainer.innerHTML = html;
+
+                    // 获取所有外部脚本
+                    const scripts = Array.from(tempContainer.getElementsByTagName('script'));
+                    
+                    // 移除脚本标签，以便后续单独加载
+                    scripts.forEach(script => script.remove());
+
+                    // 将内容添加到页面
+                    document.getElementById('app-root').innerHTML = tempContainer.innerHTML;
+
+                    // 加载必要的脚本
+                    loadScript('/jquery-3.6.0.min.js')  // 首先加载jQuery
+                        .then(() => loadScript('/gameinfos.js'))
+                        .then(() => loadScript('/loadgame.js'))
+                        .then(() => {
+                            // 执行初始化
+                            if (typeof window.onload === 'function') {
+                                window.onload();
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error loading scripts:', error);
+                        });
+                })
+                .catch(error => {
+                    console.error('Error loading content:', error);
+                });
+        }
+
+        // 加载脚本的辅助函数
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.body.appendChild(script);
+            });
+        }
+
+        // 页面加载完成后执行设备检测
+        document.addEventListener('DOMContentLoaded', detectDevice);
     </script>
 
+    <div id="app-root">
+        <!-- 内容将通过JavaScript动态加载 -->
+        <div style="text-align: center; padding: 20px;">
+            <p>加载中...</p>
+        </div>
+    </div>
+
+    <!-- SVG图标定义 -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="arrowIcon" viewBox="6 0 14 24">
+            <path d="M9 19.91a2 2 0 0 1-1.403-3.424L12.15 12 7.597 7.514a2 2 0 1 1 2.806-2.85l6 5.91a2 2 0 0 1 0 2.85l-6 5.911A1.993 1.993 0 0 1 9 19.911z"></path>
+        </symbol>
+        <!-- 其他SVG图标定义... -->
+    </svg>
 </body>
 
 </html>
