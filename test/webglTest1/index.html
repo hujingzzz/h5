@@ -22,8 +22,8 @@
           adBreak({
         type: 'next',  // ad shows at start of next level
         name: 'restart-game',
-        beforeAd: () => { myUnityInstance.SendMessage("ADManager","InterCallBack","beforeAd"); },  // You may also want to mute the game's sound.
-        afterAd: () => { myUnityInstance.SendMessage("ADManager","InterCallBack","afterAd"); },    // resume the game flow.
+        beforeAd: () => { console.log('Inter beforeAd' +myUnityInstance); myUnityInstance.SendMessage("ADManager","InterCallBack","beforeAd"); },  // You may also want to mute the game's sound.
+        afterAd: () => { console.log('Inter afterAd' +myUnityInstance);myUnityInstance.SendMessage("ADManager","InterCallBack","afterAd"); },    // resume the game flow.
         });
       }
 
