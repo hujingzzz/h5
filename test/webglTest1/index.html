@@ -16,12 +16,14 @@
     </script>
 
      <script type="text/javascript">
+
+      var myUnityInstance;
       function playinter() {
           adBreak({
         type: 'next',  // ad shows at start of next level
         name: 'restart-game',
-        beforeAd: () => { unityInstance.SendMessage("ADManager","InterCallBack","beforeAd"); },  // You may also want to mute the game's sound.
-        afterAd: () => { unityInstance.SendMessage("ADManager","InterCallBack","afterAd"); },    // resume the game flow.
+        beforeAd: () => { myUnityInstance.SendMessage("ADManager","InterCallBack","beforeAd"); },  // You may also want to mute the game's sound.
+        afterAd: () => { myUnityInstance.SendMessage("ADManager","InterCallBack","afterAd"); },    // resume the game flow.
         });
       }
 
@@ -32,12 +34,12 @@
         beforeReward: (showAdFn) => {
           showAdFn(); 
         },
-        beforeAd: () => { unityInstance.SendMessage("ADManager","RewardCallBack","beforeAd");  },     // You may also want to mute the game's sound.
+        beforeAd: () => { myUnityInstance.SendMessage("ADManager","RewardCallBack","beforeAd");  },     // You may also want to mute the game's sound.
         adDismissed: () => {
-          unityInstance.SendMessage("ADManager","RewardCallBack","adDismissed");// Hide the reward button and continue lose flow.
+          myUnityInstance.SendMessage("ADManager","RewardCallBack","adDismissed");// Hide the reward button and continue lose flow.
        },
-        adViewed: () => { unityInstance.SendMessage("ADManager","RewardCallBack","adViewed");},       // Reward granted - continue game at current score.
-        afterAd: () => { unityInstance.SendMessage("ADManager","RewardCallBack","afterAd"); },       // Resume the game flow.
+        adViewed: () => { myUnityInstance.SendMessage("ADManager","RewardCallBack","adViewed");},       // Reward granted - continue game at current score.
+        afterAd: () => { myUnityInstance.SendMessage("ADManager","RewardCallBack","afterAd"); },       // Resume the game flow.
         });
       }
      </script>
@@ -144,6 +146,7 @@
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
+            myUnityInstance=unityInstance;
           };
         }).catch((message) => {
           alert(message);
