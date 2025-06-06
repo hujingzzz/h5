@@ -12,14 +12,17 @@
     <script async data-adbreak-test="on" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6259309995888735" crossorigin="anonymous">
     </script>
 
-    <script>window.adsbygoogle = window.adsbygoogle || []; var adBreak = adConfig = function(o) {adsbygoogle.push(o);} 
+    <script>
+    window.adsbygoogle = window.adsbygoogle || []; 
+    var adBreak = adConfig = function(o) {adsbygoogle.push(o);} 
+    adConfig({preloadAdBreaks: 'on'});
     </script>
 
      <script type="text/javascript">
 
       var myUnityInstance;
       function playinter() {
-        //adConfig();
+        
           adBreak({
         type: 'next',  // ad shows at start of next level
         name: 'restart-game',
@@ -29,7 +32,7 @@
       }
 
       function playreward() {
-        //adConfig();
+        
 
            adBreak({
         type: 'reward',  // rewarded ad
@@ -39,9 +42,10 @@
         },
         beforeAd: () => { myUnityInstance.SendMessage("ADManager","RewardCallBack","beforeAd");  },     // You may also want to mute the game's sound.
         adDismissed: () => {
+          console.log("未看完广告");
           myUnityInstance.SendMessage("ADManager","RewardCallBack","adDismissed");// Hide the reward button and continue lose flow.
        },
-        adViewed: () => { myUnityInstance.SendMessage("ADManager","RewardCallBack","adViewed");},       // Reward granted - continue game at current score.
+        adViewed: () => {console.log("看完广告"); myUnityInstance.SendMessage("ADManager","RewardCallBack","adViewed");},       // Reward granted - continue game at current score.
         afterAd: () => { myUnityInstance.SendMessage("ADManager","RewardCallBack","afterAd"); },       // Resume the game flow.
         });
       }
