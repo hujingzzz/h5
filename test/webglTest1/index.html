@@ -19,6 +19,7 @@
 
       var myUnityInstance;
       function playinter() {
+        adConfig();
           adBreak({
         type: 'next',  // ad shows at start of next level
         name: 'restart-game',
@@ -28,6 +29,8 @@
       }
 
       function playreward() {
+        adConfig();
+
            adBreak({
         type: 'reward',  // rewarded ad
         name: 'reward-continue',
@@ -143,10 +146,11 @@
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
+         myUnityInstance=unityInstance;
+            console.log("初始化myUnityInstance "+myUnityInstance );
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-            myUnityInstance=unityInstance;
+            unityInstance.SetFullscreen(1);       
           };
         }).catch((message) => {
           alert(message);
