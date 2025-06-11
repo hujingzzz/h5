@@ -11,12 +11,6 @@
     <meta name="keywords" content="Play Game Page. Online games, free games, h5 games, free online games, browser games, mobile games, popular games, puzzle games, action games, adventure games, sport games, arcade games, casual games, racing games, ball games, shooting games, gun games"/>
     <meta name="description" content="Play Game Page. Play the best games on free666game.top. Including sport games, arcade games and more. Instantly play online for free!">
     <meta name="google-adsense-account" content="ca-pub-adsense_code_tihuan">
-    <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-adsense_code_tihuan" crossorigin="anonymous"></script>-->
-    <script type="text/javascript">
-        var adsbygoogleScript = "<script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-adsense_code_tihuan\" crossorigin=\"anonymous\"><\/script>";
-
-        var adsbygoogleBottomScript = "<script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>";
-    </script>
     <meta name="monetag" content="3a5f021ae2709e1a64886c7b4731a837">
     <link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
     <script type="text/javascript" src="/assets/js/jquery-3.7.1.min.js"></script>
@@ -24,24 +18,6 @@
     <script type="text/javascript" src="/assets/js/common.js"></script>
     <script type="text/javascript" src="/assets/js/freegameTrackAdClick.js"></script>
     <script type="text/javascript" src="/assets/js/game.js"></script>
-    <!-- Google 统计 (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-65V24K4EGF"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-65V24K4EGF');
-    </script>
-    <!-- TikTok ads -->
-    <script>
-        !function (w, d, t) {
-            w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-            
-            ttq.load('tk_code_tihuan');
-            ttq.page();
-        }(window, document, 'ttq');
-    </script>
-    <!-- TikTok ads end -->
     <style>
         * {
             -webkit-tap-highlight-color: transparent;
@@ -391,21 +367,6 @@
                             </div>
                             <iframe id="gameIframeElem" name="gameIframe" src="about:blank" frameborder="0" class="cardIframeCls" scrolling="no" onload="iframeLoadFunc()"></iframe>
                         </div>
-
-                        <div class="cardIframeAds">
-                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-adsense_code_tihuan"
-                                    crossorigin="anonymous"></script>
-                            <!-- free666game-展示广告1 -->
-                            <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-client="ca-pub-adsense_code_tihuan"
-                                 data-ad-slot="8338320676"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
-                        </div>
                     </div>
                     <div id="cardLayoutDivRight" class="cardLayoutRight">
                     </div>
@@ -434,8 +395,8 @@
     </div>
 
     <!-- 点击 play 的弹出广告框 -->
-    <div id="clickPlayDialog" style="display: none">
-    </div>
+    <!-- <div id="clickPlayDialog" style="display: none">
+    </div> -->
 
     <script id="nineGridAreaTemplate" type="text/template">
         <div class="nine_grid_area" css-ninegridarea displayOrder="0" {flag}>
@@ -446,35 +407,5 @@
             </div>
         </div>
     </script>
-
-    <script id="clickPlayAdsTemplate" type="text/template">
-        <div style="width: {width}px">
-            {adsbygoogleScriptContent}
-            <!-- free666game-展示广告竖1 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-adsense_code_tihuan"
-                 data-ad-slot="8563230117"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            {adsbygoogleBottomScriptContent}
-        </div>
-    </script>
-
-    <!--
-    <script id="googleAdsTemplate" type="text/template">
-        <div class="card">
-            {adsbygoogleScriptContent}
-            &lt;!&ndash; 展示广告1 &ndash;&gt;
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-adsense_code_tihuan"
-                 data-ad-slot="8338320676"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            {adsbygoogleBottomScriptContent}
-        </div>
-    </script>
-    -->
 </body>
 </html>
