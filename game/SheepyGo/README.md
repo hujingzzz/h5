@@ -1,2 +1,0 @@
-# SheepyGo
-SheepyGo

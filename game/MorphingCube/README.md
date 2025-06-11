@@ -1,2 +1,0 @@
-# MorphingCube
-MorphingCube

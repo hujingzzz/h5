@@ -1,2 +1,0 @@
-# OilTycoonDash
-OilTycoonDash
