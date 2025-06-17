@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "672896427442",
+    "project_id": "cat-cure-center",
+    "storage_bucket": "cat-cure-center.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672896427442:android:f049d0ae3788319283f0ab",
+        "android_client_info": {
+          "package_name": "com.healing.rush.hospitaltycoon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGL4gNu0rrFEL_s0O_bBPgadCTsyLOzBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
